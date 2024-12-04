@@ -1,0 +1,31 @@
+local player = game:GetService("Players").LocalPlayer
+local HWID = game:GetService("RbxAnalyticsService"):GetClientId()
+
+player:GetPropertyChangedSignal("UserId"):Connect(function()
+    player:Kick("GET OUT!!!!")
+end)
+
+player:GetPropertyChangedSignal("Name"):Connect(function()
+    player:Kick("GET OUT!!!!")
+end)
+
+local whitelists = {
+    {"bobbythebuilder2929",7301296552,EnterHWIDHere},
+    {"player2",1,"skibidiID"},
+    {"player3",1,"skibidiID"},
+    {"player4",1,"skibidiID"},
+    {"player5",1,"skibidiID"},
+    {"player6",1,"skibidiID"},
+    {"player7",1,"skibidiID"},
+    {"player8",1,"skibidiID"},
+    {"player9",1,"skibidiID"},
+    {"player10",1,"skibidiID"}
+}
+
+for _, v in ipairs(whitelists) do
+    if (player.Name == v[1] and player.UserId == v[2]) and HWID == v[3] then
+        print("Whitelisted!")
+    else
+        player:Kick("You are not whitelisted")
+    end
+end
