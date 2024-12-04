@@ -1,31 +1,24 @@
-local player = game:GetService("Players").LocalPlayer
-local HWID = game:GetService("RbxAnalyticsService"):GetClientId()
-
-player:GetPropertyChangedSignal("UserId"):Connect(function()
-    player:Kick("GET OUT!!!!")
-end)
-
-player:GetPropertyChangedSignal("Name"):Connect(function()
-    player:Kick("GET OUT!!!!")
-end)
+local cloneref = cloneref or (function(...) return ... end) --prevent skids from hooking the function and change context
+local HWID = cloneref(game:GetService("RbxAnalyticsService")):GetClientId()
 
 local whitelists = {
-    {"bobbythebuilder2929",7301296552,EnterHWIDHere},
-    {"player2",1,"skibidiID"},
-    {"player3",1,"skibidiID"},
-    {"player4",1,"skibidiID"},
-    {"player5",1,"skibidiID"},
-    {"player6",1,"skibidiID"},
-    {"player7",1,"skibidiID"},
-    {"player8",1,"skibidiID"},
-    {"player9",1,"skibidiID"},
-    {"player10",1,"skibidiID"}
+    "11d4fbc0-359b-42a8-b777-ef8dba83ea1c",
+    "SomeoneID2",
+    "SomeoneID3",
+    "SomeoneID4",
+    "SomeoneID5",
+    "SomeoneID6",
+    "SomeoneID7",
+    "SomeoneID8",
+    "SomeoneID9",
+    "SomeoneID10"
 }
 
 for _, v in ipairs(whitelists) do
-    if (player.Name == v[1] and player.UserId == v[2]) and HWID == v[3] then
+    if HWID == (typeof(v)=="string" and v or tostring(v)) then
         print("Whitelisted!")
     else
         player:Kick("You are not whitelisted")
+        while true do end
     end
 end
